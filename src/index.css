@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #faf8f3;
+    color: #1a1a1a;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Grain overlay */
+  .grain-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Gold gradient text */
+  .gold-text {
+    background: linear-gradient(135deg, #e6b800 0%, #ffd000 50%, #a37700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Underline slide animation */
+  .underline-slide {
+    position: relative;
+  }
+  .underline-slide::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #e6b800;
+    transition: width 0.3s ease;
+  }
+  .underline-slide:hover::after {
+    width: 100%;
+  }
+
+  /* Ruled background lines */
+  .ruled-bg {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(230, 184, 0, 0.04) 39px,
+      rgba(230, 184, 0, 0.04) 40px
+    );
+  }
+
+  /* Hover lift */
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+
+  /* Pulse gold button */
+  .pulse-gold {
+    animation: pulseGold 2.5s ease-in-out infinite;
+  }
+
+  /* Marquee */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 35s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* Glossy card */
+  .glossy-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(250,248,243,0.9) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(230,184,0,0.15);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+  .glossy-card:hover {
+    border-color: rgba(230,184,0,0.4);
+    box-shadow: 0 12px 50px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+    transform: translateY(-3px);
+  }
+
+  /* Gold shimmer button */
+  .btn-gold {
+    background: linear-gradient(135deg, #e6b800, #ffd000, #cc9900);
+    background-size: 200% 200%;
+    transition: background-position 0.3s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-gold:hover {
+    background-position: right center;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 25px rgba(230,184,0,0.4);
+  }
+  .btn-gold:active {
+    transform: scale(0.98);
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(230,184,0,0.5); }
+  50% { box-shadow: 0 0 0 14px rgba(230,184,0,0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #faf8f3; }
+::-webkit-scrollbar-thumb { background: rgba(230,184,0,0.4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(230,184,0,0.7); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .pulse-gold { animation: none; }
+  * { transition-duration: 0.01ms !important; }
+}
+
+/* Select styling */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a37700' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Toast animation */
+.toast-enter {
+  animation: toastIn 0.3s ease forwards;
+}
+@keyframes toastIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
