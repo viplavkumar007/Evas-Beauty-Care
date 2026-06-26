@@ -34,7 +34,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-[#faf8f3]/97 backdrop-blur-xl shadow-[0_2px_40px_rgba(0,0,0,0.08)] border-b border-[rgba(230,184,0,0.2)]'
+          ? 'bg-[#050505] shadow-[0_2px_40px_rgba(0,0,0,0.24)] border-b border-[rgba(230,184,0,0.25)]'
           : 'bg-transparent'
       }`}
     >
@@ -63,7 +63,7 @@ export default function Navbar() {
                   key={label}
                   onClick={() => handleNav(href)}
                   className={`underline-slide font-body text-sm font-medium tracking-wide transition-colors duration-200 ${
-                    isActive ? 'text-[#a37700]' : 'text-[#4a4a4a] hover:text-[#1a1a1a]'
+                    isActive ? 'text-[#e6b800]' : 'text-white hover:text-[#e6b800]'
                   }`}
                 >
                   {label}
@@ -76,7 +76,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href={`tel:${brand.phone}`}
-              className="flex items-center gap-2 text-sm font-body font-medium text-[#4a4a4a] hover:text-[#a37700] transition-colors"
+              className="flex items-center gap-2 text-sm font-body font-medium text-white hover:text-[#e6b800] transition-colors"
             >
               <Phone className="w-4 h-4" />
               <span>{brand.phone}</span>
@@ -94,7 +94,7 @@ export default function Navbar() {
 
           {/* Mobile Toggle */}
           <button
-            className="lg:hidden p-2 text-[#1a1a1a] hover:text-[#a37700] transition-colors"
+            className="lg:hidden p-2 text-white hover:text-[#e6b800] transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileOpen}
@@ -112,21 +112,21 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden bg-[#faf8f3]/98 backdrop-blur-xl border-t border-[rgba(230,184,0,0.15)] px-4 py-6 space-y-1"
+            className="lg:hidden bg-[#050505] border-t border-[rgba(230,184,0,0.25)] px-4 py-6 space-y-1"
           >
             {navLinks.map(({ label, href }) => (
               <button
                 key={label}
                 onClick={() => handleNav(href)}
-                className="block w-full text-left px-4 py-3 font-body text-sm font-medium text-[#4a4a4a] hover:text-[#a37700] hover:bg-[rgba(230,184,0,0.05)] rounded-sm transition-all"
+                className="block w-full text-left px-4 py-3 font-body text-sm font-medium text-white hover:text-[#e6b800] hover:bg-white/10 rounded-sm transition-all"
               >
                 {label}
               </button>
             ))}
-            <div className="pt-4 border-t border-[rgba(230,184,0,0.15)] flex flex-col gap-3">
+            <div className="pt-4 border-t border-[rgba(230,184,0,0.25)] flex flex-col gap-3">
               <a
                 href={`tel:${brand.phone}`}
-                className="flex items-center gap-2 px-4 py-3 border border-[rgba(230,184,0,0.3)] rounded-sm text-sm font-body font-medium text-[#4a4a4a] hover:text-[#a37700] transition-colors"
+                className="flex items-center gap-2 px-4 py-3 border border-[rgba(230,184,0,0.35)] rounded-sm text-sm font-body font-medium text-white hover:text-[#e6b800] transition-colors"
               >
                 <Phone className="w-4 h-4 text-[#e6b800]" />
                 Call: {brand.phone}
